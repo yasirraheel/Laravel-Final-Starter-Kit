@@ -99,6 +99,10 @@
            toastr.info("{{ session('info') }}");
        @endif
 
+       @if($errors->any())
+           toastr.error("Please fix the highlighted errors.");
+       @endif
+
        function deleteConfirm(formId) {
            Swal.fire({
                title: "Are you sure?",

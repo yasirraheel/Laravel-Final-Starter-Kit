@@ -19,6 +19,38 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'roles' => 'required|array'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)

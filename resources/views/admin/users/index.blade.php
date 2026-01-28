@@ -2,8 +2,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-30">
-                <div class="card-body pt-30">
+                <div class="card-body pt-30 d-flex justify-content-between align-items-center">
                     <h4 class="font-20 ">User Management</h4>
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-sm">
+                        <i class="icofont-plus"></i> Create New
+                    </a>
                 </div>
 
                 <div class="table-responsive">
