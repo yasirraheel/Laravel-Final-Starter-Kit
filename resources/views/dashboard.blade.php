@@ -106,4 +106,17 @@
             <!-- End Card -->
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-12">
+             <div class="card mb-30">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Yearly Report</h4>
+                    </div>
+                    <div id="apex_column-chart" class="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
