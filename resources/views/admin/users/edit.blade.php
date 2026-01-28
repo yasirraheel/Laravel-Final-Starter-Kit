@@ -44,34 +44,40 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-group row align-items-center">
-                                <div class="col-3">
-                                    <label>Roles</label>
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        @foreach($roles as $role)
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="role_{{ $role->id }}" name="roles[]" value="{{ $role->name }}"
-                                                    {{ $user->hasRole($role->name) ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="role_{{ $role->id }}">
-                                                    {{ ucfirst(str_replace('_', ' ', $role->name)) }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @error('roles')
-                                        <div class="text-danger mt-2 small">{{ $message }}</div>
-                                    @enderror
+                        <div class="account-setting mb-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="mb-3">Roles</h4>
                                 </div>
                             </div>
+
+                            @foreach($roles as $role)
+                            <div class="form-group mb-4 d-flex align-items-center">
+                                <div class="mr-3">
+                                    <!-- Switch -->
+                                    <label class="switch">
+                                        <input type="checkbox" name="roles[]" value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'checked' : '' }}>
+                                        <span class="control"></span>
+                                    </label>
+                                    <!-- End Switch -->
+                                </div>
+                                <div>
+                                    <label class="mb-0">{{ ucfirst(str_replace('_', ' ', $role->name)) }}</label>
+                                </div>
+                            </div>
+                            @endforeach
+                            @error('roles')
+                                <div class="text-danger mt-2 small">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update User</button>
+                            <div class="button-group pt-1">
+                                <button type="submit" class="btn">Update User</button>
+                                <a href="{{ route('admin.users.index') }}" class="link-btn bg-transparent mr-3 soft-pink">Cancel</a>
+                            </div>
                         </div>
                     </form>
                 </div>

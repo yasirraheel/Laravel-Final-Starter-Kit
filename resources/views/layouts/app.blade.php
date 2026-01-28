@@ -82,6 +82,22 @@
    <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
    <script src="{{ asset('Dashmin_html/assets/plugins/apex/apexcharts.min.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/apex/custom-apexcharts.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.min.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.js') }}"></script>
+   <script>
+       @if(session('success'))
+           toastr.success("{{ session('success') }}");
+       @endif
+       @if(session('error'))
+           toastr.error("{{ session('error') }}");
+       @endif
+       @if(session('warning'))
+           toastr.warning("{{ session('warning') }}");
+       @endif
+       @if(session('info'))
+           toastr.info("{{ session('info') }}");
+       @endif
+   </script>
    <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
 
    @stack('modals')
