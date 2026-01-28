@@ -30,8 +30,8 @@
                 <span class="link-title">User Management</span>
              </a>
           </li>
-          <li>
-             <a href="#">
+          <li class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+             <a href="{{ route('admin.settings.index') }}">
                 <i class="icofont-settings"></i>
                 <span class="link-title">System Settings</span>
              </a>
