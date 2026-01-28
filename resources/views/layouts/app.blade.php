@@ -84,42 +84,31 @@
    <script src="{{ asset('Dashmin_html/assets/plugins/apex/apexcharts.min.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/apex/custom-apexcharts.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.min.js') }}"></script>
-   <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
    <script>
-       toastr.options = {
-           "closeButton": true,
-           "debug": false,
-           "newestOnTop": true,
-           "progressBar": true,
-           "positionClass": "toast-top-right",
-           "preventDuplicates": false,
-           "onclick": null,
-           "showDuration": "300",
-           "hideDuration": "1000",
-           "timeOut": "5000",
-           "extendedTimeOut": "1000",
-           "showEasing": "swing",
-           "hideEasing": "linear",
-           "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
+      // Configure Toastr options to match theme style
+      toastr.options = {
+          "closeButton": true,
+          "progressBar": true,
+          "positionClass": "toast-top-right",
+          "timeOut": "5000"
       };
 
       @if(session('success'))
-          toastr.success("{{ session('success') }}");
+          toastr.success("{{ session('success') }}", "Success");
       @endif
       @if(session('error'))
-          toastr.error("{{ session('error') }}");
+          toastr.error("{{ session('error') }}", "Error");
       @endif
       @if(session('warning'))
-          toastr.warning("{{ session('warning') }}");
+          toastr.warning("{{ session('warning') }}", "Warning");
       @endif
       @if(session('info'))
-          toastr.info("{{ session('info') }}");
+          toastr.info("{{ session('info') }}", "Info");
       @endif
 
       @if($errors->any())
-          toastr.error("Please fix the highlighted errors.");
+          toastr.error("Please fix the highlighted errors.", "Validation Error");
       @endif
 
       function deleteConfirm(formId) {
