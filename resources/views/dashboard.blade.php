@@ -1,6 +1,4 @@
-@extends('layouts.dashmin')
-
-@section('content')
+<x-app-layout>
 <div class="row">
    <div class="col-xl-4 col-md-8">
       <!-- Card -->
@@ -61,7 +59,7 @@
       </div>
       <!-- End Card -->
    </div>
-      
+
    <div class="col-xl-2 col-md-4 col-sm-6">
       <!-- Card -->
       <div class="card area-chart-box mb-30">
@@ -75,7 +73,7 @@
       </div>
       <!-- End Card -->
    </div>
-      
+
    <div class="col-xl-2 col-md-4 col-sm-6">
       <!-- Card -->
       <div class="card area-chart-box mb-30">
@@ -151,7 +149,7 @@
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-down.svg') }}" alt="" class="svg">568</div>
                   </div>
 
-                  
+
                   <div class="d-flex flex-wrap progress-info">
                      <div>Disabled</div>
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-up.svg') }}" alt="" class="svg">1.26k</div>
@@ -186,7 +184,7 @@
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-down.svg') }}" alt="" class="svg">89k</div>
                   </div>
 
-                  
+
                   <div class="d-flex flex-wrap progress-info">
                      <div>Expenses</div>
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-up.svg') }}" alt="" class="svg">1.26k</div>
@@ -221,7 +219,7 @@
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-down.svg') }}" alt="" class="svg">3</div>
                   </div>
 
-                  
+
                   <div class="d-flex flex-wrap progress-info">
                      <div>Production</div>
                      <div><img src="{{ asset('Dashmin_html/assets/img/svg/caret-up.svg') }}" alt="" class="svg">1.26k</div>
@@ -335,7 +333,7 @@
                      </div>
                   </div>
                   <!-- End Todo Single -->
-                  
+
                   <!-- Todo Single -->
                   <div class="single-row border-bottom pt-3 pb-3">
                      <div class="d-flex justify-content-between align-items-center">
@@ -435,7 +433,7 @@
                      </div>
                   </div>
                   <!-- End Todo Single -->
-                  
+
                   <!-- Todo Single -->
                   <div class="single-row pb-3 pt-3">
                      <div class="d-flex justify-content-between align-items-center">
@@ -644,4 +642,4 @@
       <!-- End Card -->
    </div>
 </div>
-@endsection
+</x-app-layout>

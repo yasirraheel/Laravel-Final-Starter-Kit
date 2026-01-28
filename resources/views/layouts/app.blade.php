@@ -1,45 +1,91 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+   <!-- Page Title -->
+   <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+   <!-- Meta Data -->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+   <!-- Favicon -->
+   <link rel="shortcut icon" href="{{ asset('Dashmin_html/assets/img/favicon.png') }}">
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+   <!-- Web Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+   <!-- ======= BEGIN GLOBAL MANDATORY STYLES ======= -->
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/bootstrap/css/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/fonts/icofont/icofont.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css') }}">
+   <!-- ======= END BEGIN GLOBAL MANDATORY STYLES ======= -->
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+   <!-- ======= BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/plugins/apex/apexcharts.css') }}">
+   <!-- ======= END BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+   <!-- ======= MAIN STYLES ======= -->
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/css/style.css') }}">
+   <!-- ======= END MAIN STYLES ======= -->
 
-        @stack('modals')
+   <!-- Scripts -->
+   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @livewireScripts
-    </body>
+   @livewireStyles
+</head>
+
+<body>
+
+   <!-- Offcanval Overlay -->
+   <div class="offcanvas-overlay"></div>
+   <!-- Offcanval Overlay -->
+
+   <!-- Wrapper -->
+   <div class="wrapper">
+
+      @include('partials.header')
+
+      <!-- Main Wrapper -->
+      <div class="main-wrapper">
+         @include('partials.sidebar')
+
+         <!-- Main Content -->
+         <div class="main-content">
+            <div class="container-fluid">
+               @if (isset($header))
+                  <div class="mb-4">
+                     {{ $header }}
+                  </div>
+               @endif
+
+               {{ $slot }}
+            </div>
+         </div>
+         <!-- End Main Content -->
+      </div>
+      <!-- End Main Wrapper -->
+
+      @include('partials.footer')
+   </div>
+   <!-- End wrapper -->
+
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+   <script src="{{ asset('Dashmin_html/assets/js/jquery.min.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/js/script.js') }}"></script>
+   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+
+   <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+   <script src="{{ asset('Dashmin_html/assets/plugins/apex/apexcharts.min.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/plugins/apex/custom-apexcharts.js') }}"></script>
+   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
+   @stack('modals')
+   @livewireScripts
+</body>
+
 </html>
