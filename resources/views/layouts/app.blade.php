@@ -86,29 +86,46 @@
    <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.min.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
    <script>
-      // Configure Toastr options to match theme style
+      // Configure Toastr options to match the template's defaults
       toastr.options = {
-          "closeButton": true,
-          "progressBar": true,
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
           "positionClass": "toast-top-right",
-          "timeOut": "5000"
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
       };
 
-      @if(session('success'))
-          toastr.success("{{ session('success') }}", "Success");
-      @endif
-      @if(session('error'))
-          toastr.error("{{ session('error') }}", "Error");
-      @endif
-      @if(session('warning'))
-          toastr.warning("{{ session('warning') }}", "Warning");
-      @endif
-      @if(session('info'))
-          toastr.info("{{ session('info') }}", "Info");
+      @if(Session::has('success'))
+          toastr.success("{{ Session::get('success') }}");
       @endif
 
-      @if($errors->any())
-          toastr.error("Please fix the highlighted errors.", "Validation Error");
+      @if(Session::has('error'))
+          toastr.error("{{ Session::get('error') }}");
+      @endif
+
+      @if(Session::has('info'))
+          toastr.info("{{ Session::get('info') }}");
+      @endif
+
+      @if(Session::has('warning'))
+          toastr.warning("{{ Session::get('warning') }}");
+      @endif
+
+      // Display validation errors if any
+      @if ($errors->any())
+          @foreach ($errors->all() as $error)
+              toastr.error("{{ $error }}");
+          @endforeach
       @endif
 
       function deleteConfirm(formId) {

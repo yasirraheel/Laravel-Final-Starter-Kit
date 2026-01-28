@@ -19,5 +19,7 @@ Route::middleware([
     // Admin Routes
     Route::middleware(['role:super_admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::resource('users', UserController::class);
+        Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
+        Route::post('settings', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
     });
 });
