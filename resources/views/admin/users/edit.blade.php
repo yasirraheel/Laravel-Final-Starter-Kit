@@ -1,23 +1,28 @@
 <x-app-layout>
     <div class="row">
-        <div class="col-12 col-md-8 mx-auto">
-            <div class="card mb-30">
-                <div class="card-body p-30">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="font-20">Edit User</h4>
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm">
-                            <i class="icofont-arrow-left"></i> Back to List
-                        </a>
-                    </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="font-20">Edit User</h4>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-sm">
+                    <i class="icofont-arrow-left"></i> Back to List
+                </a>
+            </div>
+        </div>
+    </div>
 
-                    <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+    <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
+        <div class="row">
+            <div class="col-xl-6">
+                <!-- Personal Information Card -->
+                <div class="card mb-30">
+                    <div class="card-body p-30">
                         <div class="edit-personal-info mb-5">
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 class="mb-3">User Information</h4>
+                                    <h4 class="mb-3">Personal Information</h4>
                                 </div>
                             </div>
 
@@ -45,13 +50,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="account-setting mb-5">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="mb-3">Roles</h4>
-                                </div>
-                            </div>
+            <div class="col-xl-6">
+                <!-- Roles Card -->
+                <div class="card mb-30">
+                    <div class="card-body p-30">
+                        <div class="account-setting">
+                            <div><h4 class="mb-20 pt-2">Roles</h4></div>
 
                             @foreach($roles as $role)
                             <div class="form-group mb-4 d-flex align-items-center">
@@ -72,16 +80,39 @@
                                 <div class="text-danger mt-2 small">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <div class="button-group pt-1">
-                                <button type="submit" class="btn">Update User</button>
-                                <a href="{{ route('admin.users.index') }}" class="link-btn bg-transparent mr-3 soft-pink">Cancel</a>
+                <!-- Change Password Card -->
+                <div class="card mb-30">
+                    <div class="card-body p-30">
+                        <div class="change-password">
+                            <div><h4 class="mb-4 pt-2">Change Password</h4></div>
+
+                            <div class="form-group mb-4">
+                                <label for="password" class="bold font-14 mb-2">New Password</label>
+                                <input type="password" class="theme-input-style @error('password') is-invalid @enderror" id="password" name="password" placeholder="********">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
+                            <div class="form-group mb-10">
+                                <label for="password_confirmation" class="bold font-14 mb-2">Retype Password</label>
+                                <input type="password" class="theme-input-style" id="password_confirmation" name="password_confirmation" placeholder="********">
+                            </div>
+                            <small class="text-muted">Leave blank to keep current password.</small>
                         </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 text-right">
+                <div class="button-group pt-1">
+                    <button type="submit" class="btn">Update User</button>
+                    <a href="{{ route('admin.users.index') }}" class="link-btn bg-transparent mr-3 soft-pink">Cancel</a>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </x-app-layout>

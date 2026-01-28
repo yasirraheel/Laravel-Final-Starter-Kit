@@ -6,26 +6,6 @@
                     <h4 class="font-20 ">User Management</h4>
                 </div>
 
-                <div class="px-30">
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-
-                    @if(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-                </div>
-
                 <div class="table-responsive">
                     <table class="text-nowrap hoverable dh-table">
                         <thead>
@@ -65,12 +45,12 @@
                                             <i class="icofont-edit"></i>
                                         </a>
                                         @if(auth()->id() !== $user->id)
-                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                        <button type="button" class="btn btn-danger btn-sm" title="Delete" onclick="deleteConfirm('delete-form-{{ $user->id }}')">
+                                            <i class="icofont-ui-delete"></i>
+                                        </button>
+                                        <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete">
-                                                <i class="icofont-ui-delete"></i>
-                                            </button>
                                         </form>
                                         @endif
                                     </div>

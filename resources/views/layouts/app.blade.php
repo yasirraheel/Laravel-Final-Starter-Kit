@@ -84,6 +84,7 @@
    <script src="{{ asset('Dashmin_html/assets/plugins/apex/custom-apexcharts.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.min.js') }}"></script>
    <script src="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.js') }}"></script>
+   <script src="{{ asset('Dashmin_html/assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
    <script>
        @if(session('success'))
            toastr.success("{{ session('success') }}");
@@ -97,6 +98,25 @@
        @if(session('info'))
            toastr.info("{{ session('info') }}");
        @endif
+
+       function deleteConfirm(formId) {
+           Swal.fire({
+               title: "Are you sure?",
+               text: "You won't be able to revert this!",
+               type: "warning",
+               showCancelButton: !0,
+               confirmButtonColor: "#3085d6",
+               cancelButtonColor: "#d33",
+               confirmButtonText: "Yes, delete it!",
+               confirmButtonClass: "btn long",
+               cancelButtonClass: "btn long bg-danger ml-1",
+               buttonsStyling: !1,
+           }).then(function (t) {
+               if (t.value) {
+                   document.getElementById(formId).submit();
+               }
+           });
+       }
    </script>
    <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
 
