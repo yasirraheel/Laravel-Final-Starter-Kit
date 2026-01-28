@@ -25,6 +25,7 @@
 
    <!-- ======= BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
    <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/plugins/apex/apexcharts.css') }}">
+   <link rel="stylesheet" href="{{ asset('Dashmin_html/assets/plugins/toastr/toastr.min.css') }}">
    <!-- ======= END BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
 
    <!-- ======= MAIN STYLES ======= -->
@@ -101,27 +102,27 @@
            "showEasing": "swing",
            "hideEasing": "linear",
            "showMethod": "fadeIn",
-           "hideMethod": "fadeOut"
-       };
+          "hideMethod": "fadeOut"
+      };
 
-       @if(session('success'))
-           toastr.success("{{ session('success') }}");
-       @endif
-       @if(session('error'))
-           toastr.error("{{ session('error') }}");
-       @endif
-       @if(session('warning'))
-           toastr.warning("{{ session('warning') }}");
-       @endif
-       @if(session('info'))
-           toastr.info("{{ session('info') }}");
-       @endif
+      @if(session('success'))
+          toastr.success("{{ session('success') }}");
+      @endif
+      @if(session('error'))
+          toastr.error("{{ session('error') }}");
+      @endif
+      @if(session('warning'))
+          toastr.warning("{{ session('warning') }}");
+      @endif
+      @if(session('info'))
+          toastr.info("{{ session('info') }}");
+      @endif
 
-       @if($errors->any())
-           toastr.error("Please fix the highlighted errors.");
-       @endif
+      @if($errors->any())
+          toastr.error("Please fix the highlighted errors.");
+      @endif
 
-       function deleteConfirm(formId) {
+      function deleteConfirm(formId) {
            Swal.fire({
                title: "Are you sure?",
                text: "You won't be able to revert this!",
