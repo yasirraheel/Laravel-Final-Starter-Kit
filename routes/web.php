@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,4 +15,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Admin Routes
+    Route::middleware(['role:super_admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::resource('users', UserController::class);
+    });
 });

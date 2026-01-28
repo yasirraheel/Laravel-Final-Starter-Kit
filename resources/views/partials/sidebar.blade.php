@@ -24,8 +24,8 @@
 
           @role('super_admin')
           <li class="nav-category">Administration</li>
-          <li>
-             <a href="#">
+          <li class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+             <a href="{{ route('admin.users.index') }}">
                 <i class="icofont-users"></i>
                 <span class="link-title">User Management</span>
              </a>
