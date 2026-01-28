@@ -16,38 +16,46 @@
                <div class="main-header-left h-100 d-flex align-items-center">
                   <!-- Main Header User -->
                   <div class="main-header-user">
-                     <a href="#" class="d-flex align-items-center" data-toggle="dropdown">
-                        <div class="menu-icon">
-                           <span></span>
-                           <span></span>
-                           <span></span>
-                        </div>
+                     @auth
+                         <a href="#" class="d-flex align-items-center" data-toggle="dropdown">
+                            <div class="menu-icon">
+                               <span></span>
+                               <span></span>
+                               <span></span>
+                            </div>
 
-                        <div class="user-profile d-xl-flex align-items-center d-none">
-                           <!-- User Avatar -->
-                           <div class="user-avatar">
-                              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
-                           </div>
-                           <!-- End User Avatar -->
+                            <div class="user-profile d-xl-flex align-items-center d-none">
+                               <!-- User Avatar -->
+                               <div class="user-avatar">
+                                  <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                               </div>
+                               <!-- End User Avatar -->
 
-                           <!-- User Info -->
-                           <div class="user-info">
-                              <h4 class="user-name">{{ Auth::user()->name }}</h4>
-                              <p class="user-email">{{ Auth::user()->email }}</p>
-                           </div>
-                           <!-- End User Info -->
-                        </div>
-                     </a>
-                     <div class="dropdown-menu">
-                        <a href="{{ route('profile.show') }}">My Profile</a>
-                        <a href="#">task</a>
-                        <a href="#">Settings</a>
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}" x-data>
-                            @csrf
-                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();">Log Out</a>
-                        </form>
-                     </div>
+                               <!-- User Info -->
+                               <div class="user-info">
+                                  <h4 class="user-name">{{ Auth::user()->name }}</h4>
+                                  <p class="user-email">{{ Auth::user()->email }}</p>
+                               </div>
+                               <!-- End User Info -->
+                            </div>
+                         </a>
+                         <div class="dropdown-menu">
+                            <a href="{{ route('profile.show') }}">My Profile</a>
+                            <a href="#">task</a>
+                            <a href="#">Settings</a>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <a href="{{ route('logout') }}" @click.prevent="$root.submit();">Log Out</a>
+                            </form>
+                         </div>
+                     @else
+                         <a href="{{ route('login') }}" class="d-flex align-items-center">
+                            <div class="user-info">
+                               <h4 class="user-name">Login / Register</h4>
+                            </div>
+                         </a>
+                     @endauth
                   </div>
                   <!-- End Main Header User -->
 
